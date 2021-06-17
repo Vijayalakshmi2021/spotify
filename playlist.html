@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music for everyone - Spotify</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="images/favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/albums.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/media-queries.css" />
+    <style>
+
+.albums-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 5rem 1.5rem;
+}
+.albums-content h2 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 0.1rem var(--black);
+}
+.albums-content p {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+.albums-content button {
+  padding: 1.5rem 4.5rem;
+  border-radius: 3rem;
+  outline: none;
+  background: var(--white);
+  color: var(--gray3);
+  font-weight: 700;
+  border-color: var(--gray3);
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.albums-content button:hover {
+  background: var(--gray3);
+  color: var(--white);
+}
+.albums-content button:active {
+  background: var(--black);
+  border-color: var(--black);
+}
+.albums-cards-container {
+  display: flex;
+  overflow: auto;
+  padding-bottom: 8rem;
+}
+.albums-cards-container::-webkit-scrollbar {
+  display: none;
+}
+.album {
+  min-width: 50%;
+  padding-left: 3.5rem;
+  box-sizing: content-box;
+}
+.album:first-child {
+  padding-left: 1.5rem;
+}
+.album:last-child {
+  padding-right: 1.5rem;
+}
+.album img {
+  width: 100%;
+  box-shadow: 0.1rem 0.1rem 1.6rem -0.2rem rgba(0, 0, 0, 0.3);
+}
+.album img:hover {
+  cursor: pointer;
+}
+.album-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.album-info h2,
+.album-info h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.album-info h2 {
+  font-size: 1.75rem;
+  color: var(--gray2);
+  padding-top: 2rem;
+}
+.album-info h4 {
+  font-size: 1.5rem;
+  color: var(--gray1);
+  margin: 1rem 0;
+}
+.album-info h2,
+.album-info h4 {
+  cursor: pointer;
+}
+.album-info a {
+  font-size: 1.5rem;
+  color: var(--green2);
+  font-weight: 700;
+  letter-spacing: 2px;
+  transition: all 0.4s ease;
+}
+.album-info a:hover {
+  color: var(--green1);
+}
+:root {
+  --blue: #2d46b9;
+  --white: #ffffff;
+  --black: #000000;
+  --green1: #1ed760;
+  --green2: #1db954;
+  --gray1: #c1c3c6;
+  --gray2: #919496;
+  --gray3: #616467;
+  --hero-bg-color: #ffc362;
+  --hero-terms-link: #efefef;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+ footer {
+  background: var(--black);
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+}
+
+.footer-nav {
+  padding: 0 1.5rem;
+  margin: 0 auto;
+}
+
+.logo-footer {
+  padding-bottom: 5rem;
+}
+
+.logo-footer img {
+  width: 9rem;
+}
+
+.company-links,
+.communities-links {
+  margin-bottom: 6rem;
+}
+.company-links li,
+.communities-links li,
+.useful-links li {
+  color: var(--white);
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.company-links li a:hover,
+.communities-links li a:hover,
+.useful-links li a:hover {
+  color: var(--green1);
+}
+.company-links li:first-child,
+.communities-links li:first-child,
+.useful-links li:first-child {
+  color: var(--gray2);
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 3rem;
+}
+
+.footer-nav li:last-child {
+  margin-bottom: 0;
+}
+
+.social-icons {
+  padding-top: 14rem;
+  padding-bottom: 1rem;
+}
+.social-icons ul {
+  display: flex;
+}
+.social-icons ul li {
+  margin-right: 1.5rem;
+  padding: 1rem;
+  background: #222326;
+  border-radius: 50%;
+}
+.social-icons img {
+  width: 2.3rem;
+  background: var(--white);
+  display: block;
+}
+.social-icons img:hover {
+  background: var(--green1);
+}
+.country {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+.country a {
+  display: inline-block;
+}
+
+.country a:hover > span {
+  color: var(--green1);
+}
+
+.country span {
+  color: var(--gray2);
+  vertical-align: super;
+}
+
+.country img {
+  width: 2.5rem;
+  margin-left: 1rem;
+}
+
+.bottom-links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.bottom-links ul li {
+  margin-right: 2.6rem;
+  padding: 1rem 0;
+}
+
+.bottom-links span {
+  padding: 1rem 0;
+}
+
+.bottom-links a,
+.bottom-links span {
+  color: var(--gray2);
+}
+
+.bottom-links a:hover {
+  color: var(--green1);
+}
+
+ header {
+  height: 5.5rem;
+  background: var(--black);
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 76.5rem;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+}
+
+.header-logo img {
+  width: 9rem;
+}
+.nav-mobile {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.profile {
+  border: 2px solid var(--white);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+
+.profile svg {
+  width: 1.6rem;
+  fill: var(--white);
+}
+
+.profile:hover {
+  border-color: var(--green1);
+}
+
+.profile:hover > svg {
+  fill: var(--green1);
+}
+.toggler {
+  width: 2rem;
+  height: 3rem;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+}
+
+.hamburger-menu {
+  width: 2rem;
+  height: 3rem;
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-menu div {
+  position: relative;
+  transition: all 0.4s ease;
+}
+.hamburger-menu div,
+.hamburger-menu div::before,
+.hamburger-menu div::after {
+  content: "";
+  height: 0.3rem;
+  width: 100%;
+  background: var(--white);
+  border-radius: 1rem;
+}
+.hamburger-menu div::before {
+  position: absolute;
+  top: -0.7rem;
+}
+.hamburger-menu div::after {
+  position: absolute;
+  top: 0.7rem;
+}
+
+
+.toggler:checked + .hamburger-menu > div {
+  transform: rotate(135deg);
+}
+.toggler:checked + .hamburger-menu > div::before,
+.toggler:checked + .hamburger-menu > div::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+.menu-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  width: 0;
+  opacity: 0;
+  height: 100%;
+  background: var(--black);
+  top: 0;
+  right: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  visibility: hidden;
+  padding: 4rem;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+.background-overlay {
+  position: absolute;
+  width: 1000rem;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  right: 0;
+  display: none;
+}
+.toggler:checked + .hamburger-menu + .menu > .background-overlay {
+  display: initial;
+}
+.toggler:checked + .hamburger-menu + .menu > .menu-overlay {
+  visibility: visible;
+  width: 44.7rem;
+  max-width: 100vw;
+  opacity: 1;
+}
+.toggler:checked {
+  z-index: 1001;
+}
+.toggler:checked + .hamburger-menu {
+  z-index: 1000;
+}
+.menu-overlay li,
+.menu-overlay-logo {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s ease;
+}
+.menu-overlay li {
+  color: var(--white);
+  font-size: 3.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.toggler:checked + .hamburger-menu + .menu > .menu-overlay li,
+.toggler:checked + .hamburger-menu + .menu > .menu-overlay .menu-overlay-logo {
+  transform: translateX(0);
+  opacity: 1;
+}
+.menu-overlay li:nth-child(1) {
+  transition: transform 0.1s ease;
+}
+
+.menu-overlay li:nth-child(2) {
+  transition: transform 0.2s ease;
+}
+
+.menu-overlay li:nth-child(3) {
+  transition: transform 0.3s ease;
+}
+
+.menu-overlay li:nth-child(4) {
+  transition: transform 0.4s ease;
+}
+
+.menu-overlay li:nth-child(5) {
+  transition: transform 0.5s ease;
+}
+
+.menu-overlay li:nth-child(6) {
+  transition: transform 0.6s ease;
+}
+
+.menu-overlay-logo {
+  transition: transform 0.6s ease;
+}
+
+
+.menu-overlay li a:hover {
+  color: var(--blue);
+}
+.menu-overlay li:nth-child(4) {
+  width: 2rem;
+  height: 0.15rem;
+  margin: 4rem 0;
+  background: var(--white);
+}
+.menu-overlay li:nth-last-child(-n + 2) {
+  font-size: 2.8rem;
+  font-weight: 400;
+}
+.menu-overlay li:last-child {
+  margin: 2rem 0;
+}
+.menu-overlay-logo img {
+  width: 9rem;
+  cursor: pointer;
+}
+.nav-desktop {
+  display: none;
+}
+.nav-desktop ul {
+  display: flex;
+  align-items: center;
+}
+.nav-desktop ul li {
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-right: 3rem;
+  font-weight: 700;
+}
+.nav-desktop > ul li:last-child {
+  width: 1.7rem;
+  height: 0.1rem;
+  background: var(--white);
+  transform: rotate(90deg);
+}
+.nav-desktop ul li a:hover {
+  color: var(--blue);
+}
+.profile-container {
+  display: flex;
+  cursor: pointer;
+  position: relative;
+}
+.profile-container:hover .profile,
+.dropdown-menu-toggler:checked + .dropdown-menu + .profile {
+  border-color: var(--blue);
+}
+.profile-container:hover .profile svg,
+.profile-container:hover ul li:last-child svg,
+.dropdown-menu-toggler:checked + .dropdown-menu + .profile svg,
+.dropdown-menu-toggler:checked
+  + .dropdown-menu
+  + .profile
+  + ul
+  li:last-child
+  svg {
+  fill: var(--blue);
+}
+
+.profile-container:hover > ul li:first-child,
+.dropdown-menu-toggler:checked + .dropdown-menu + .profile + ul li:first-child {
+  color: var(--blue);
+}
+
+
+.profile-container ul li:first-child {
+  margin-right: 1rem;
+}
+
+
+.profile-container ul li:last-child {
+  margin-right: 0;
+}
+.profile-arrow {
+  width: 1.2rem;
+  fill: var(--white);
+}
+.dropdown-menu {
+  width: 16rem;
+  height: 8rem;
+  position: absolute;
+  background: var(--white);
+  bottom: -9.5rem;
+  right: -2rem;
+  border-radius: 0.4rem;
+  visibility: hidden;
+}
+.dropdown-menu-toggler {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.dropdown-menu::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: -1.3rem;
+  right: 1rem;
+  border-left: 1.6rem solid transparent;
+  border-right: 1.6rem solid transparent;
+  border-bottom: 1.6rem solid var(--white);
+}
+.dropdown-menu ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.dropdown-menu ul li:first-child {
+  margin-bottom: 1rem;
+  color: var(--black);
+}
+.dropdown-menu ul li:last-child {
+  margin-bottom: 1rem;
+  color: var(--gray2);
+}
+.dropdown-menu-toggler:checked + .dropdown-menu {
+  visibility: visible;
+}
+.dropdown-menu-toggler:checked
+  + .dropdown-menu
+  + .profile
+  + ul
+  li:last-child
+  svg {
+  transform: rotate(180deg);
+}
+ .hero {
+  background: var(--hero-bg-color);
+  position: relative;
+}
+
+.hero-container {
+  padding: 24.5rem 1.5rem 0 1.5rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-title {
+  font-size: 5rem;
+  color: var(--white);
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 4rem;
+  line-height: 5rem;
+  letter-spacing: -0.3rem;
+}
+
+.hero-button {
+  padding: 2rem 6rem;
+  border: none;
+  border-radius: 3rem;
+  color: var(--white);
+  background: var(--green2);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  margin-bottom: 3rem;
+}
+
+.hero-button:hover {
+  background: var(--green1);
+}
+
+.terms {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.hero-terms-link,
+.hero-terms-link + span,
+.terms > span {
+  font-size: 1.2rem;
+  color: var(--hero-terms-link);
+}
+
+.hero-terms-link,
+.terms > span {
+  margin-right: 0.2rem;
+}
+
+.hero-terms-link {
+  text-decoration: underline;
+  transition: all 0.6s ease;
+}
+
+.hero-terms-link:hover {
+  color: var(--white);
+}
+@media screen and (min-width: 768px) {
+  /* HERO */
+  .hero-container {
+    padding-top: 0;
+    min-height: 64rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(
+      ellipse at center,
+      #fbcb6c 0%,
+      #f3c65d 0%,
+      #f2ae54 100%
+    );
+  }
+
+  .hero-title {
+    font-size: 6.5rem;
+    line-height: 8rem;
+    letter-spacing: -0.4rem;
+  }
+
+  .hero-button {
+    margin-bottom: 0;
+  }
+
+  .terms {
+    position: absolute;
+    bottom: 1.2rem;
+  }
+  .albums-container {
+    width: 75rem;
+    margin: 0 auto;
+  }
+
+  .albums-cards-container {
+    flex-wrap: wrap;
+    overflow: visible;
+    padding: 5rem 0;
+  }
+  .album {
+    min-width: 0;
+    width: 33.33%;
+    box-sizing: border-box;
+    padding: 0.8rem;
+    position: relative;
+  }
+  .album:first-child,
+  .album:last-child {
+    padding: 0.8rem;
+  }
+
+  .album > img {
+    height: 100%;
+  }
+
+  .albums-content {
+    padding-bottom: 0;
+  }
+ 
+  .albums-content h2 {
+    font-size: 4rem;
+  }
+
+  .album-info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    justify-content: center;
+    opacity: 0;
+    margin: 0.8rem;
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .album-info h4 {
+    margin-top: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.005rem;
+  }
+
+  .album-info a {
+    position: relative;
+    bottom: -2rem;
+  }
+
+  .album-info:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .album-info:hover > h2 {
+    color: var(--white);
+    white-space: normal;
+    overflow: initial;
+    text-overflow: initial;
+  }
+
+  .footer-nav {
+    width: 75rem;
+  }
+
+  .top-links {
+    display: flex;
+    justify-content: space-between;
+  }
+  .bottom-links ul li {
+    font-size: 1.16rem;
+  }
+
+  .country span,
+  .bottom-links span {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  /* HEADER */
+  header {
+    background: rgba(0, 0, 0, 0.6);
+    height: 8rem;
+  }
+
+  .header-container {
+    max-width: 97rem;
+  }
+
+  .header-logo img {
+    width: 13rem;
+  }
+
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-mobile {
+    display: none;
+  }
+
+  
+  .profile {
+    width: 4rem;
+    height: 4rem;
+  }
+  .profile svg {
+    width: 2rem;
+  }
+ 
+  .hero-title {
+    font-size: 8rem;
+    margin-bottom: 0;
+  }
+  .hero-content {
+    width: 70%;
+  }
+
+ .hero-button {
+    position: relative;
+    top: 6rem;
+  }
+ 
+ .albums-container {
+    width: 97rem;
+  }
+  .albums-cards-container {
+    padding-top: 7rem;
+    padding-bottom: 13rem;
+  }
+  .albums-content h2 {
+    font-size: 4.5rem;
+  }
+  .album-info {
+    padding: 0 1rem;
+  }
+
+  .album-info h4 {
+    font-size: 1.6rem;
+  }
+  footer {
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+  }
+  .footer-nav {
+    width: 97rem;
+    position: relative;
+  }
+ .logo-footer,
+  .top-links,
+  .social-icons {
+    vertical-align: top;
+  }
+  .logo-footer {
+    display: inline-block;
+    width: 16.666666%;
+  }
+
+  .logo-footer img {
+    width: 13rem;
+  }
+
+  .top-links {
+    display: inline-flex;
+    width: 50%;
+  }
+  .social-icons {
+    display: inline-block;
+    margin: 0 1.5rem 0 auto;
+    padding-top: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .social-icons ul li {
+    padding: 1.5rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .header-container {
+    max-width: 117rem;
+  }
+ .hero-button {
+    top: 5rem;
+  }
+ .albums-container {
+    width: 117rem;
+  }
+  .album-info h2 {
+    font-size: 3rem;
+  }
+
+  .album-info h4 {
+    font-size: 1.8rem;
+  }
+  .footer-nav {
+    width: 117rem;
+  }
+}
+    </style>
+  </head>
+  <body>
+    
+    <header>
+      <div class="header-container">
+        <div class="header-logo">
+            <a href="#"><i class="fa fa-spotify fa-5x" style="color: white;"></i><h1 style="display: inline; color: white;">Spotify</h1></a>
+        </div>
+      
+        <nav class="nav-mobile">
+         
+          <div class="profile">
+            <svg viewBox="0 0 1024 1024" class="profile-icon">
+              <path
+                d="M730.06 679.64q-45.377 53.444-101.84 83.443t-120 29.999q-64.032 0-120.75-30.503t-102.6-84.451q-40.335 13.109-77.645 29.747t-53.948 26.722l-17.142 10.084Q106.388 763.84 84.96 802.41t-21.428 73.107 25.461 59.242 60.754 24.705h716.95q35.293 0 60.754-24.705t25.461-59.242-21.428-72.603-51.679-57.225q-6.554-4.033-18.907-10.84t-51.427-24.453-79.409-30.755zm-221.84 25.72q-34.285 0-67.561-14.873t-60.754-40.335-51.175-60.502-40.083-75.124-25.461-84.451-9.075-87.728q0-64.032 19.915-116.22t54.452-85.964 80.67-51.931 99.072-18.151 99.072 18.151 80.67 51.931 54.452 85.964 19.915 116.22q0 65.04-20.167 130.58t-53.948 116.72-81.426 83.443-98.568 32.268z"
+              ></path>
+            </svg>
+          </div>
+         
+          <input type="checkbox" class="toggler" />
+          <div class="hamburger-menu"><div></div></div>
+          <div class="menu">
+            <div class="background-overlay"></div>
+            <div class="menu-overlay">
+              <ul>
+                <li><a href="#">Premium</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Download</a></li>
+                <li role="separator"></li>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Log out</a></li>
+              </ul>
+              <div class="menu-overlay-logo">
+                <i class="fa fa-spotify " style="color:black;"></i>
+              </div>
+            </div>
+          </div>
+        </nav>
+       
+        <nav class="nav-desktop">
+          
+          <ul>
+            <li><a href="#">Premium</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Download</a></li>
+            <li role="separator"></li>
+          </ul>
+         
+          <div class="profile-container">
+            <input type="checkbox" class="dropdown-menu-toggler" />
+            <div class="dropdown-menu">
+              <ul>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Log out</a></li>
+              </ul>
+            </div>
+            <div class="profile">
+              <svg viewBox="0 0 1024 1024" class="profile-icon">
+                <path
+                  d="M730.06 679.64q-45.377 53.444-101.84 83.443t-120 29.999q-64.032 0-120.75-30.503t-102.6-84.451q-40.335 13.109-77.645 29.747t-53.948 26.722l-17.142 10.084Q106.388 763.84 84.96 802.41t-21.428 73.107 25.461 59.242 60.754 24.705h716.95q35.293 0 60.754-24.705t25.461-59.242-21.428-72.603-51.679-57.225q-6.554-4.033-18.907-10.84t-51.427-24.453-79.409-30.755zm-221.84 25.72q-34.285 0-67.561-14.873t-60.754-40.335-51.175-60.502-40.083-75.124-25.461-84.451-9.075-87.728q0-64.032 19.915-116.22t54.452-85.964 80.67-51.931 99.072-18.151 99.072 18.151 80.67 51.931 54.452 85.964 19.915 116.22q0 65.04-20.167 130.58t-53.948 116.72-81.426 83.443-98.568 32.268z"
+                ></path>
+              </svg>
+            </div>
+            <ul>
+              <li>Profile</li>
+              <li>
+                <svg viewBox="0 0 1024 1024" class="profile-arrow">
+                  <path
+                    d="M476.455 806.696L95.291 425.532Q80.67 410.911 80.67 390.239t14.621-34.789 35.293-14.117 34.789 14.117L508.219 698.8l349.4-349.4q14.621-14.117 35.293-14.117t34.789 14.117 14.117 34.789-14.117 34.789L546.537 800.142q-19.159 19.159-38.318 19.159t-31.764-12.605z"
+                  ></path>
+                </svg>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+   
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">Go Premium. Be happy.</h1>
+          <button class="hero-button">START FREE TRIAL</button>
+          <div class="terms">
+            <span>*</span>
+            <a href="#" class="hero-terms-link">Terms and conditions</a
+            ><span>apply. Open only to users who haven't already tried Premium.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="albums">
+      <div class="albums-container">
+        <div class="albums-content">
+          <h1 style="font-size: 30px; color: black; font-weight: bolder;">Looking for music?</h1>
+          <p style="font-size: 12px;">Start listening to the best new releases.</p>
+          <button>LAUNCH WEB PLAYER</button>
+        </div>
+        <div class="albums-cards-container">
+         
+          <div class="album">
+            <img src="./clara.jpg" />
+            <div class="album-info">
+              <h2>Clara</h2>
+              <h4>Loscil</h4>
+              <a href="#">PLAY NOW</a>
+            </div>
+          </div>
+ 
+          <div class="album">
+            <img src="./hall.jpg"/>
+            <div class="album-info">
+              <h2>Hall of Fame</h2>
+              <h4>Polo G</h4>
+              <a href="#">PLAY NOW</a>
+            </div>
+          </div>
+     
+          <div class="album">
+            <img src="./solar.jpg" />
+            <div class="album-info">
+              <h2>Solar Power</h2>
+              <h4>Lorde</h4>
+              <a href="#">PLAY NOW</a>
+            </div>
+          </div>
+       
+          <div class="album">
+            <img src="./chain.jpg" />
+            <div class="album-info">
+              <h2>Chain My Heart</h2>
+              <h4>Topic</h4>
+              <a href="#">PLAY NOW</a>
+            </div>
+          </div>
+        
+          <div class="album">
+            <img src="./Jordi.jpg" />
+            <div class="album-info">
+              <h2>JORDI(Deluxe)</h2>
+              <h4>Maroon 5</h4>
+              <a href="#">PLAY NOW</a>
+            </div>
+          </div>
+       
+          <div class="album">
+            <img src="./culture.jpg" />
+            <div class="album-info">
+              <h2>Culture III</h2>
+              <h4>Migos</h4>
+              <a href="#">PLAY NOW</a>
+            </div>
+        
+          </div>
+        </div>
+      </div>
+    </section>
+   
+    <footer>
+      <nav class="footer-nav">
+        <div class="logo-footer">
+          <a href="#"><i class="fa fa-spotify fa-5x" style="color: white;"></i>
+            <h1 style="display: inline; color: white;">Spotify</h1></a>
+        </div>
+        <div class="top-links">
+          <div class="company-links">
+            <ul>
+              <li>COMPANY</li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Jobs</a></li>
+              <li><a href="#">For the Record</a></li>
+            </ul>
+          </div>
+          <div class="communities-links">
+            <ul>
+              <li>COMMUNITIES</li>
+              <li><a href="#">For artists</a></li>
+              <li><a href="#">Developers</a></li>
+              <li><a href="#">Advertising</a></li>
+              <li><a href="#">Investors</a></li>
+              <li><a href="#">Vendors</a></li>
+            </ul>
+          </div>
+          <div class="useful-links">
+            <ul>
+              <li>USEFUL LINKS</li>
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Web Player</a></li>
+              <li><a href="#">Free Mobile App</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="social-icons">
+          <ul>
+            <li>
+              <a href="#"><i class="fa fa-facebook-square fa-3x" style="color: white;"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-twitter fa-3x" style="color: white;"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-instagram fa-3x" style="color: white;"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="country">
+          <a href="#"><i class="fa fa-globe fa-2x"></i><span>  India (English)</span></a>
+        </div>
+        <div class="bottom-links">
+          <ul>
+            <li><a href="#">Legal</a></li>
+            <li><a href="#">Privacy Center</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cookies</a></li>
+            <li><a href="#">About Ads</a></li>
+          </ul>
+          <span>&copy; 2021 Spotify AB</span>
+        </div>
+      </nav>
+    </footer>
+  </body>
+  <script src="playlist.js"></script>
+</html>
